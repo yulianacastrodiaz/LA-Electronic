@@ -42,6 +42,16 @@ input {
   background-color: rgb(221, 221, 221);
 }
 
+.addquote {
+  border: none;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-left: 5%;
+  width: 70px;
+  height: 33px;
+  background-color: rgb(221, 221, 221);
+}
+
 .todoContainer {
   height: 50px;
   font-size: 18px;

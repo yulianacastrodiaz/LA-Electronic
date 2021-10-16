@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./component.module.css";
 
-const ListComponent = ({ toDo, toDoes, onHandleChange, onHandleSubmit, deleteTodo, editTodo ,onHandleChecked }) => {
+const ListComponent = ({ toDo, toDoes, onHandleChange, onHandleSubmit, deleteTodo, editTodo, addQuote ,onHandleChecked }) => {
   const TodoList = () => {
     return (
       <div className={style.list}>
@@ -43,6 +43,9 @@ const ListComponent = ({ toDo, toDoes, onHandleChange, onHandleSubmit, deleteTod
             +
           </button>
         </form>
+        <button type='button' onClick={addQuote}className={style.addquote}>
+          add quote
+        </button>
         <div>
           {toDoes.length ? (
             <TodoList />

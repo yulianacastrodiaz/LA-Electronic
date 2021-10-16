@@ -46,24 +46,6 @@ const ListContainer = () => {
     }
   };
   const editTodo = (id) => {
-    // e.preventDefault();
-    // const edited = toDoes.map((e) => {
-    //   if (e.id === id) {
-    //     e.toDo = newmessage;
-    //   }
-    //   return e;
-    // });
-   
-    // setToDoes(edited);
-    // return (
-    //   <form>
-    //     <input>
-    //     nuevo texto
-    //     </input>
-    //     <button type='submit'>
-    //     </button>
-    //   </form>
-    // )
     let newmessage = window.prompt('Type a new description');
     const edited = toDoes.map((t) => {
       if (t.id === id) {
@@ -75,6 +57,27 @@ const ListContainer = () => {
     setToDoes(edited);
     console.log(newmessage)
   };
+  const addQuote = () =>  {
+    let quantity = window.prompt('Type quantity');
+    fetch(`https://catfact.ninja/facts?limit=${parseInt(quantity)}`)
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      let allToDoes = toDoes;
+      data.data.forEach(quote => {
+        let toDo = quote.fact
+        if(toDo.length > 30) {
+          toDo = toDo.slice(0,30)
+        } 
+        allToDoes = [...allToDoes,{
+          toDo,
+          id: allToDoes.length + 1,
+        }]
+      });
+      setToDoes(allToDoes)
+    })
+  }
 
   const setLocal = () => {
     const data = JSON.parse(localStorage.getItem("toDo"));
@@ -101,6 +104,7 @@ const ListContainer = () => {
       deleteTodo={deleteTodo}
       editTodo={editTodo}
       onHandleChecked={onHandleChecked}
+      addQuote={addQuote}
     />
   );
 };
